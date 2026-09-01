@@ -133,7 +133,12 @@ window.WORKS = [
     description_ja: "『もし誰にも見られなかったら』は、絵本と連続するイメージによる作品です。横長の画面、静かな自然の空間、余白を通して「見ること」と知覚の関係を考えます。各見開きを十分な間隔で縦に並べ、元のリズムを保っています。",
     description_en: "If I Were Never Seen unfolds through picture-book spreads and a sequence of images. Wide compositions, quiet natural spaces, and pauses consider the relationship between being seen and perception. Each spread is presented intact in a spacious vertical reading rhythm.",
     cover: "art/unseen/cover.webp",
-    images: ["art/unseen/cover.webp", "art/unseen/spread-01.jpg"],
+    images: [
+      "art/unseen/cover.webp",
+      "art/unseen/summer-cicada.jpeg",
+      "art/unseen/autumn-owl.jpeg",
+      "art/unseen/winter-crow.jpeg"
+    ],
     layoutType: "picturebook-wide"
   },
   {
