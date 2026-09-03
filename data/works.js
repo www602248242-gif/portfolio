@@ -96,9 +96,31 @@ window.WORKS = [
     description_zh: "《尾生之信》以传统故事为线索展开绘本创作。橙色人物与蓝灰色水域构成主要视觉基调，画面在完整跨页、人物场景与线稿研究之间推进。作品以绘本式纵向阅读呈现，保留每幅画面的原始比例。",
     description_ja: "『尾生之信』は伝統的な物語を手がかりに制作した絵本です。橙色の人物と青灰色の水辺を主な色調とし、見開き、人物場面、線画研究のあいだで物語が進みます。各画面の比率を保ち、絵本のように縦方向に読める構成です。",
     description_en: "Wei Sheng's Promise is a picture-book project developed from a traditional story. Orange figures and blue-grey water establish its visual tone, while the sequence moves among full spreads, narrative scenes, and line studies. The work is presented as a vertical picture-book reading with every composition intact.",
-    cover: "art/weisheng/img-137.jpg",
-    images: ["art/weisheng/img-137.jpg", "art/weisheng/img-138.jpg", "art/weisheng/img-139.jpg"],
-    layoutType: "picturebook"
+    cover: "art/weisheng/weisheng_01.jpg",
+    images: [
+      "art/weisheng/weisheng_01.jpg",
+      "art/weisheng/weisheng_02.jpg",
+      "art/weisheng/weisheng_03.jpg",
+      "art/weisheng/weisheng_04.jpg",
+      "art/weisheng/weisheng_05.jpg",
+      "art/weisheng/weisheng_06.jpg",
+      "art/weisheng/weisheng_07.jpg",
+      "art/weisheng/weisheng_08.jpg",
+      "art/weisheng/weisheng_09.jpg",
+      "art/weisheng/weisheng_10.jpg",
+      "art/weisheng/weisheng_11.jpg"
+    ],
+    galleryGroups: [
+      { type: "portrait-feature", images: ["art/weisheng/weisheng_01.jpg"] },
+      { type: "landscape-pair", images: ["art/weisheng/weisheng_02.jpg", "art/weisheng/weisheng_03.jpg"] },
+      { type: "wide", images: ["art/weisheng/weisheng_04.jpg"] },
+      { type: "portrait-pair", images: ["art/weisheng/weisheng_05.jpg", "art/weisheng/weisheng_06.jpg"] },
+      { type: "wide", images: ["art/weisheng/weisheng_07.jpg"] },
+      { type: "landscape-pair", images: ["art/weisheng/weisheng_08.jpg", "art/weisheng/weisheng_09.jpg"] },
+      { type: "portrait-single", images: ["art/weisheng/weisheng_10.jpg"] },
+      { type: "wide", images: ["art/weisheng/weisheng_11.jpg"] }
+    ],
+    layoutType: "weisheng-editorial"
   },
   {
     slug: "jigong",

@@ -150,6 +150,13 @@
       return `<section class="work-gallery">${work.images.map((src, index) => galleryItem(src, work, classes[index])).join("")}
         <p class="film-bottom"><a class="film-link" href="${work.video}" target="_blank" rel="noopener noreferrer">${homeText[lang].watch} ↗</a></p></section>`;
     }
+    if (work.layoutType === "weisheng-editorial") {
+      return `<section class="work-gallery gallery-weisheng">
+        ${work.galleryGroups.map(group => `<div class="weisheng-row weisheng-${group.type}">
+          ${group.images.map(src => galleryItem(src, work)).join("")}
+        </div>`).join("")}
+      </section>`;
+    }
     if (work.layoutType === "calendar") {
       return `<section class="calendar-gallery">
         ${work.annual.map(item => `<figure class="annual-calendar"><figcaption class="calendar-year">${item.year}</figcaption><button class="art-button" type="button" data-lightbox-src="${asset(item.src)}">${imageMarkup(item.src, `${title(work, lang)} ${item.year}`)}</button></figure>`).join("")}
@@ -174,7 +181,9 @@
     const next = works[(workIndex + 1) % works.length];
     const titleImage = work.titleImage ? `<figure class="title-image">${imageMarkup(work.titleImage, title(work, lang), true)}</figure>` : "";
     const topFilm = work.video && work.layoutType !== "mikan" ? `<a class="film-link" href="${work.video}" target="_blank" rel="noopener noreferrer">${homeText[lang].watch} ↗</a>` : "";
-    container.innerHTML = `<article>
+    const articleClass = work.layoutType === "weisheng-editorial" ? "work-weisheng" : "";
+    document.body.classList.toggle("weisheng-detail", work.layoutType === "weisheng-editorial");
+    container.innerHTML = `<article class="${articleClass}">
       <header class="work-intro">
         <p class="work-meta">${escapeHtml(work.category[lang])} · ${work.year}</p>
         <div class="work-titles"><h1>${escapeHtml(work.title_zh)}</h1><p class="title-ja">${escapeHtml(work.title_ja)}</p><p class="title-en">${escapeHtml(work.title_en)}</p></div>
