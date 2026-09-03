@@ -37,6 +37,7 @@
 
   const title = (work, lang) => work[`title_${lang}`];
   const description = (work, lang) => work[`description_${lang}`];
+  const summary = (work, lang) => work[`summary_${lang}`] || "";
   const asset = path => `${BASE}${path}`;
   const languageFromQuery = new URLSearchParams(location.search).get("lang");
   let lang = languages.includes(languageFromQuery) ? languageFromQuery : localStorage.getItem("cai-xiaoyao-language");
@@ -78,14 +79,30 @@
     const catalog = document.getElementById("works-catalog");
     if (!selected || !catalog) return;
 
-    const selectedSlugs = ["unseen", "mikan", "diary", "zen"];
-    selected.innerHTML = selectedSlugs.map((slug, index) => {
+    const selectedCard = (slug, index, extended = false) => {
       const work = works.find(item => item.slug === slug);
+      const projectCopy = extended
+        ? `<div class="selected-project-copy">
+            <p class="work-card-meta">${slug === "mikan" ? "ANIMATION" : "MANGA / VISUAL DIARY"}</p>
+            <h3>${escapeHtml(title(work, lang))}</h3>
+            <time>${work.year}</time>
+            <p class="selected-summary">${escapeHtml(summary(work, lang))}</p>
+            <span class="selected-view">VIEW PROJECT →</span>
+          </div>`
+        : `<div class="caption-row"><div><p class="work-card-meta">${escapeHtml(work.category[lang])}</p><h3>${escapeHtml(title(work, lang))}</h3></div><time>${work.year}</time></div>`;
       return `<a class="selected-card selected-${slug}" href="${workHref(slug)}">
         <figure>${imageMarkup(work.cover, title(work, lang), index === 0)}</figure>
-        <div class="caption-row"><div><p class="work-card-meta">${escapeHtml(work.category[lang])}</p><h3>${escapeHtml(title(work, lang))}</h3></div><time>${work.year}</time></div>
+        ${projectCopy}
       </a>`;
-    }).join("");
+    };
+    selected.innerHTML = `
+      ${selectedCard("unseen", 0)}
+      <div class="selected-pair">
+        ${selectedCard("mikan", 1, true)}
+        ${selectedCard("diary", 2, true)}
+      </div>
+      ${selectedCard("zen", 3)}
+    `;
 
     const groups = [
       { key: "ANIMATION", slugs: ["diaoji", "mikan"] },
