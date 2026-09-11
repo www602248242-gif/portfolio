@@ -10,9 +10,9 @@
   <meta property="og:type" content="website">
   <title>蔡逍遥 / CAI XIAOYAO</title>
   <link rel="icon" href="/portfolio/favicon.svg">
-  <link rel="stylesheet" href="/portfolio/styles.css?v=20260903-weisheng">
+  <link rel="stylesheet" href="/portfolio/styles.css?v=20260911-hero">
   <script defer src="/portfolio/data/works.js?v=20260903-weisheng"></script>
-  <script defer src="/portfolio/script.js?v=20260903-weisheng"></script>
+  <script defer src="/portfolio/script.js?v=20260911-hero"></script>
 </head>
 <body data-page="home">
   <a class="skip-link" href="#selected" data-i18n="skip">浏览作品</a>
@@ -34,7 +34,6 @@
 
   <main>
     <section class="hero" id="top">
-      <div class="hero-image"><img src="/portfolio/art/unseen/cover.webp" alt="" width="2048" height="682"></div>
       <div class="hero-copy">
         <p class="eyebrow" data-i18n="heroEyebrow">动画 · 绘本 · 插画</p>
         <h1 data-i18n="name">蔡逍遥</h1>
@@ -42,6 +41,17 @@
         <p class="role" data-i18n="role">动画创作者 · 绘本作者 · 插画家 · 大学讲师</p>
         <p class="hero-intro" data-i18n="intro">从手绘出发，在动画、绘本与图像叙事中，寻找感知、记忆和传统文化的新表达。</p>
         <a class="arrow-link" href="#selected"><span data-i18n="explore">浏览作品</span> ↘</a>
+      </div>
+      <div class="hero-book" id="hero-book" aria-roledescription="carousel" aria-label="Selected artwork book">
+        <div class="hero-book-stage" id="hero-book-stage" tabindex="0" aria-label="Artwork book. Use the left and right arrow keys to browse.">
+          <article class="hero-page" id="hero-page" aria-live="polite" aria-atomic="true"></article>
+          <div class="hero-page-turn" id="hero-page-turn" aria-hidden="true" hidden></div>
+        </div>
+        <div class="hero-book-controls" aria-label="Artwork book navigation">
+          <button id="hero-prev" type="button" aria-label="Previous artwork" aria-controls="hero-page">←</button>
+          <span id="hero-counter" aria-live="polite">01 / 04</span>
+          <button id="hero-next" type="button" aria-label="Next artwork" aria-controls="hero-page">→</button>
+        </div>
       </div>
     </section>
 

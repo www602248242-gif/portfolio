@@ -35,12 +35,46 @@
     }
   };
 
+  const heroSlugs = ["unseen", "mikan", "diary", "zen"];
+  const heroCategories = {
+    unseen: "PICTURE BOOK",
+    mikan: "ANIMATION",
+    diary: "MANGA / VISUAL DIARY",
+    zen: "ILLUSTRATION / SERIES"
+  };
+  const heroSlideCopy = {
+    zh: {
+      unseen: "以四季与自然感知，思考存在与“被看见”。",
+      mikan: "文学改编与水墨动画实验。",
+      diary: "以时间轴记录日常生活的漫画实验。",
+      zen: "在山水、月色与留白之间展开的系列插画。"
+    },
+    ja: {
+      unseen: "四季と自然の感覚から、存在と「見られること」を考える絵本。",
+      mikan: "文学作品の翻案と水墨表現によるアニメーション実験。",
+      diary: "時間軸に沿って日常生活を記録するマンガ実験。",
+      zen: "山水、月、余白のあいだに展開するイラストレーション・シリーズ。"
+    },
+    en: {
+      unseen: "A picture book reflecting on existence and being seen through the changing seasons.",
+      mikan: "An animation experiment in literary adaptation and ink-wash expression.",
+      diary: "A comics experiment recording everyday life along a timeline.",
+      zen: "An illustration series shaped by landscape, moonlight, and open space."
+    }
+  };
+
   const title = (work, lang) => work[`title_${lang}`];
   const description = (work, lang) => work[`description_${lang}`];
   const summary = (work, lang) => work[`summary_${lang}`] || "";
   const asset = path => `${BASE}${path}`;
   const languageFromQuery = new URLSearchParams(location.search).get("lang");
   let lang = languages.includes(languageFromQuery) ? languageFromQuery : localStorage.getItem("cai-xiaoyao-language");
+  let heroIndex = 0;
+  let heroAnimating = false;
+  let heroTouchStartX = null;
+  let heroTouchStartY = null;
+  let suppressHeroClick = false;
+  let heroFlipToken = 0;
   if (!languages.includes(lang)) {
     const browser = navigator.language.toLowerCase();
     lang = browser.startsWith("ja") ? "ja" : browser.startsWith("en") ? "en" : "zh";
@@ -74,10 +108,141 @@
     return String(value).replace(/[&<>"]/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[character]));
   }
 
+  function heroPageMarkup(index) {
+    const slug = heroSlugs[index];
+    const work = works.find(item => item.slug === slug);
+    if (!work) return "";
+    const number = String(index + 1).padStart(2, "0");
+    return `<div class="hero-page-paper hero-paper-${slug}">
+      <figure class="hero-page-image hero-page-image-${slug}">${imageMarkup(work.cover, title(work, lang), true)}</figure>
+      <div class="hero-page-copy">
+        <div class="hero-page-heading">
+          <p class="hero-page-meta">${number} / ${heroCategories[slug]}</p>
+          <h2>${escapeHtml(title(work, lang))}</h2>
+          <time>${escapeHtml(work.year)}</time>
+        </div>
+        <div class="hero-page-note">
+          <p>${escapeHtml(heroSlideCopy[lang][slug])}</p>
+          <a href="${workHref(slug)}">VIEW PROJECT ↗</a>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function updateHeroCounter(index) {
+    const counter = document.getElementById("hero-counter");
+    if (counter) counter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(heroSlugs.length).padStart(2, "0")}`;
+  }
+
+  function preloadHeroPages(index) {
+    [index, (index + 1) % heroSlugs.length].forEach(pageIndex => {
+      const work = works.find(item => item.slug === heroSlugs[pageIndex]);
+      if (!work) return;
+      const preload = new Image();
+      preload.src = asset(work.cover);
+    });
+  }
+
+  function renderHero() {
+    const page = document.getElementById("hero-page");
+    const turn = document.getElementById("hero-page-turn");
+    if (!page || !turn) return;
+    heroFlipToken += 1;
+    heroAnimating = false;
+    turn.hidden = true;
+    turn.className = "hero-page-turn";
+    turn.innerHTML = "";
+    page.innerHTML = heroPageMarkup(heroIndex);
+    page.dataset.heroIndex = String(heroIndex);
+    page.setAttribute("aria-label", `Artwork ${heroIndex + 1} of ${heroSlugs.length}: ${title(works.find(item => item.slug === heroSlugs[heroIndex]), lang)}`);
+    updateHeroCounter(heroIndex);
+    preloadHeroPages(heroIndex);
+  }
+
+  function flipHero(direction) {
+    const page = document.getElementById("hero-page");
+    const turn = document.getElementById("hero-page-turn");
+    if (!page || !turn || heroAnimating) return;
+    const targetIndex = (heroIndex + direction + heroSlugs.length) % heroSlugs.length;
+    const targetWork = works.find(item => item.slug === heroSlugs[targetIndex]);
+    if (!targetWork) return;
+
+    heroAnimating = true;
+    const token = ++heroFlipToken;
+    turn.className = "hero-page-turn";
+    turn.innerHTML = page.innerHTML;
+    turn.hidden = false;
+    page.innerHTML = heroPageMarkup(targetIndex);
+    page.dataset.heroIndex = String(targetIndex);
+    page.setAttribute("aria-label", `Artwork ${targetIndex + 1} of ${heroSlugs.length}: ${title(targetWork, lang)}`);
+    void turn.offsetWidth;
+    turn.classList.add(direction > 0 ? "is-turning-next" : "is-turning-previous");
+
+    let finished = false;
+    const finish = () => {
+      if (finished || token !== heroFlipToken) return;
+      finished = true;
+      heroIndex = targetIndex;
+      heroAnimating = false;
+      turn.hidden = true;
+      turn.className = "hero-page-turn";
+      turn.innerHTML = "";
+      updateHeroCounter(heroIndex);
+      preloadHeroPages(heroIndex);
+    };
+    turn.addEventListener("animationend", finish, { once: true });
+    window.setTimeout(finish, 900);
+  }
+
+  function initHero() {
+    const stage = document.getElementById("hero-book-stage");
+    const previous = document.getElementById("hero-prev");
+    const next = document.getElementById("hero-next");
+    if (!stage || !previous || !next || stage.dataset.bound === "true") return;
+    stage.dataset.bound = "true";
+
+    previous.addEventListener("click", () => flipHero(-1));
+    next.addEventListener("click", () => flipHero(1));
+    stage.addEventListener("click", event => {
+      if (suppressHeroClick || event.target.closest("a, button")) return;
+      const bounds = stage.getBoundingClientRect();
+      flipHero(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
+    });
+    stage.addEventListener("touchstart", event => {
+      const touch = event.changedTouches[0];
+      heroTouchStartX = touch.clientX;
+      heroTouchStartY = touch.clientY;
+    }, { passive: true });
+    stage.addEventListener("touchend", event => {
+      if (heroTouchStartX === null || heroTouchStartY === null) return;
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - heroTouchStartX;
+      const deltaY = touch.clientY - heroTouchStartY;
+      heroTouchStartX = null;
+      heroTouchStartY = null;
+      if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.2) return;
+      suppressHeroClick = true;
+      flipHero(deltaX < 0 ? 1 : -1);
+      window.setTimeout(() => { suppressHeroClick = false; }, 800);
+    }, { passive: true });
+
+    document.addEventListener("keydown", event => {
+      if (document.body.dataset.page !== "home" || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      const tagName = event.target.tagName;
+      if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(tagName) || event.target.isContentEditable) return;
+      const bounds = stage.getBoundingClientRect();
+      if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
+      event.preventDefault();
+      flipHero(event.key === "ArrowRight" ? 1 : -1);
+    });
+  }
+
   function renderHome() {
     const selected = document.getElementById("selected-layout");
     const catalog = document.getElementById("works-catalog");
     if (!selected || !catalog) return;
+    renderHero();
 
     const selectedCard = (slug, index, extended = false) => {
       const work = works.find(item => item.slug === slug);
@@ -237,5 +402,6 @@
     });
     nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => { menu.setAttribute("aria-expanded", "false"); nav.classList.remove("is-open"); }));
   }
+  initHero();
   setLanguage(lang);
 })();
