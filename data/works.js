@@ -96,7 +96,7 @@ window.WORKS = [
     description_zh: "系列以山水、月色、树木与游观人物为主要意象，在水墨、水彩与装饰性色彩之间寻找安静而富有层次的画面关系。不同作品既保持独立构图，也通过自然景观、空白与观看路径形成连续的视觉气息。",
     description_ja: "山水、月、樹木、風景の中の人物を主なモチーフに、水墨、水彩、装飾的な色彩のあいだで静かで層のある画面を探るシリーズです。各作品は独立した構図を持ちながら、自然、余白、視線の流れによって連続します。",
     description_en: "This series brings together landscapes, moonlight, trees, and wandering figures. Moving between ink, watercolor, and decorative color, the works seek a quiet layered image. Each composition stands independently while sharing a visual rhythm shaped by nature, open space, and paths of looking.",
-    cover: "art/zen/cover.webp",
+    cover: "art/zen/zen-cover-yugezi.webp",
     images: ["art/zen/cover.webp", "art/zen/img-127.jpg", "art/zen/img-129.jpg", "art/zen/img-130.jpg", "art/zen/img-131.jpg", "art/zen/img-134.jpg", "art/zen/img-135.jpg", "art/zen/img-136.jpg"],
     layoutType: "series"
   },
