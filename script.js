@@ -332,6 +332,14 @@
     return renderStandardGallery(work);
   }
 
+  function renderStory(work) {
+    const blocks = work[`story_${lang}`];
+    if (!Array.isArray(blocks) || !blocks.length) return "";
+    return `<section class="work-story" aria-label="${escapeHtml(title(work, lang))}">
+      ${blocks.map(block => `<p>${escapeHtml(block).replace(/\n/g, "<br>")}</p>`).join("")}
+    </section>`;
+  }
+
   function renderWork() {
     const container = document.getElementById("work-page");
     if (!container) return;
@@ -356,6 +364,7 @@
         <p class="work-description">${escapeHtml(description(work, lang))}</p>
         ${topFilm}
       </header>
+      ${renderStory(work)}
       ${renderSpecialGallery(work)}
       <nav class="work-nav" aria-label="Work navigation">
         <div class="work-nav-links">
