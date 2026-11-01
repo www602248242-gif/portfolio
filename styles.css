@@ -204,7 +204,7 @@ figure, p, h1, h2, h3 { margin-top: 0; }
 .selected-card h3, .catalog-card h3 { margin: 0; font-family: Georgia, "Noto Serif SC", "Noto Serif JP", serif; font-size: clamp(1.2rem, 2vw, 1.75rem); font-weight: 400; }
 .selected-card .caption-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .selected-card time { color: var(--muted); font-size: .78rem; }
-.selected-unseen { grid-column: 1 / 13; }
+.selected-indirect-life, .selected-unseen { grid-column: 1 / 13; }
 .selected-pair {
   grid-column: 1 / 13;
   display: grid;

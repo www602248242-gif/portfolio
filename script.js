@@ -36,8 +36,9 @@
     }
   };
 
-  const heroSlugs = ["unseen", "mikan", "diary", "zen"];
+  const heroSlugs = ["indirect-life", "unseen", "mikan", "diary", "zen"];
   const heroCategories = {
+    "indirect-life": "MANGA / WORK IN PROGRESS",
     unseen: "PICTURE BOOK",
     mikan: "ANIMATION",
     diary: "MANGA / VISUAL DIARY",
@@ -45,18 +46,21 @@
   };
   const heroSlideCopy = {
     zh: {
+      "indirect-life": "诞生于通勤途中，描绘人在限制之中仍不放弃希望的创作中漫画。",
       unseen: "以四季与自然感知，思考存在与“被看见”。",
       mikan: "文学改编与水墨动画实验。",
       diary: "以时间轴记录日常生活的漫画实验。",
       zen: "在山水、月色与留白之间展开的系列插画。"
     },
     ja: {
+      "indirect-life": "通勤の途中で生まれ、制約の中でも希望を手放さず生きることを描く制作中のマンガ。",
       unseen: "四季と自然の感覚から、存在と「見られること」を考える絵本。",
       mikan: "文学作品の翻案と水墨表現によるアニメーション実験。",
       diary: "時間軸に沿って日常生活を記録するマンガ実験。",
       zen: "山水、月、余白のあいだに展開するイラストレーション・シリーズ。"
     },
     en: {
+      "indirect-life": "A work-in-progress comic born during the commute, about living with constraints without letting go of hope.",
       unseen: "A picture book reflecting on existence and being seen through the changing seasons.",
       mikan: "An animation experiment in literary adaptation and ink-wash expression.",
       diary: "A comics experiment recording everyday life along a timeline.",
@@ -261,12 +265,13 @@
       </a>`;
     };
     selected.innerHTML = `
-      ${selectedCard("unseen", 0)}
+      ${selectedCard("indirect-life", 0)}
+      ${selectedCard("unseen", 1)}
       <div class="selected-pair">
-        ${selectedCard("mikan", 1, true)}
-        ${selectedCard("diary", 2, true)}
+        ${selectedCard("mikan", 2, true)}
+        ${selectedCard("diary", 3, true)}
       </div>
-      ${selectedCard("zen", 3)}
+      ${selectedCard("zen", 4)}
     `;
 
     const groups = [
