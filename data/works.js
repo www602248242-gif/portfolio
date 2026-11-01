@@ -59,6 +59,20 @@ window.WORKS = [
     layoutType: "diary"
   },
   {
+    slug: "indirect-life",
+    category: { zh: "漫画 / 创作中", ja: "マンガ / 制作中", en: "MANGA / WORK IN PROGRESS" },
+    year: "2026",
+    title_zh: "间接生活",
+    title_ja: "間接生活（かんせつせいかつ）",
+    title_en: "Indirect Life",
+    description_zh: "《间接生活》是一部诞生于通勤途中的漫画作品。作品讲述一个明知人生存在种种限制，却依然不愿放弃希望的人，如何在现实中一次次作出选择，继续生活下去。当前展示为创作中的草稿。",
+    description_ja: "『間接生活』は、通勤の途中で生まれた漫画作品です。人生にはさまざまな制約があると知りながらも、それでも希望を手放そうとしない一人の人間が、現実の中で何度も選択を重ねながら、どのように日々を生きていくのかを描く物語です。現在、制作中の草稿を公開しています。",
+    description_en: "Indirect Life is a comic project born during the artist’s commute. It follows a person who understands that life is shaped by many constraints yet refuses to let go of hope, tracing how they continue living through one real-world choice after another. The image presents work-in-progress sketches.",
+    cover: "art/indirect-life/indirect-life-drafts.webp",
+    images: ["art/indirect-life/indirect-life-drafts.webp"],
+    layoutType: "picturebook-wide"
+  },
+  {
     slug: "digital",
     category: { zh: "插画", ja: "イラストレーション", en: "ILLUSTRATION" },
     year: "2020",

@@ -271,7 +271,7 @@
 
     const groups = [
       { key: "ANIMATION", slugs: ["diaoji", "mikan"] },
-      { key: "MANGA", slugs: ["diary"] },
+      { key: "MANGA", slugs: ["diary", "indirect-life"] },
       { key: "ILLUSTRATION", slugs: ["digital", "zen"] },
       { key: "PICTURE BOOK", slugs: ["weisheng", "jigong", "nuwa", "unseen"] },
       { key: "VISUAL DESIGN", slugs: ["calendar"] }
