@@ -275,8 +275,8 @@ footer p { margin: 0; }
 .gallery-editorial .gallery-item:nth-child(4n) { grid-column: 3 / 12; }
 .gallery-series { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(36px, 6vw, 100px); align-items: start; }
 .gallery-series .gallery-item:nth-child(3n + 1) { grid-column: 1 / 3; width: 82%; margin: 0 auto; }
-.gallery-circles { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(38px, 7vw, 110px); align-items: center; }
-.gallery-circles .gallery-item:nth-child(4n + 1) { grid-column: 1 / 3; width: min(72%, 880px); margin: 0 auto; }
+.gallery-circles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.5vw, 60px); align-items: start; }
+.gallery-circles .gallery-item { width: 100%; margin: 0; }
 .work-weisheng .work-intro { padding-bottom: clamp(38px, 5vw, 68px); }
 .gallery-weisheng { display: flex; flex-direction: column; gap: clamp(30px, 4vw, 58px); }
 .weisheng-row { display: grid; gap: clamp(22px, 3vw, 44px); align-items: start; }
