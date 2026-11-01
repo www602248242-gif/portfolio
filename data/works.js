@@ -48,7 +48,7 @@ window.WORKS = [
     summary_zh: "以时间轴记录日常生活的漫画实验。",
     summary_ja: "時間軸に沿って日常生活を記録するマンガ実験。",
     summary_en: "A comics experiment recording everyday life along a timeline.",
-    cover: "art/diary/diary_014.jpg",
+    cover: "art/diary/diary-cover-contact-sheet.webp",
     images: [
       "art/diary/diary_014.jpg", "art/diary/diary_017.jpg", "art/diary/diary_12.jpg", "art/diary/diary_020.jpg",
       "art/diary/diary_016.jpg", "art/diary/diary_027.jpg", "art/diary/diary_018.jpg", "art/diary/diary_01.jpg",
