@@ -117,12 +117,13 @@
     const work = works.find(item => item.slug === slug);
     if (!work) return "";
     const number = String(index + 1).padStart(2, "0");
+    const heroTitle = slug === "indirect-life" && lang === "ja" ? "間接生活" : title(work, lang);
     return `<div class="hero-page-paper hero-paper-${slug}">
-      <figure class="hero-page-image hero-page-image-${slug}">${imageMarkup(work.cover, title(work, lang), true)}</figure>
+      <figure class="hero-page-image hero-page-image-${slug}">${imageMarkup(work.cover, heroTitle, true)}</figure>
       <div class="hero-page-copy">
         <div class="hero-page-heading">
           <p class="hero-page-meta">${number} / ${heroCategories[slug]}</p>
-          <h2>${escapeHtml(title(work, lang))}</h2>
+          <h2>${escapeHtml(heroTitle)}</h2>
           <time>${escapeHtml(work.year)}</time>
         </div>
         <div class="hero-page-note">
