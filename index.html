@@ -1,31 +1,31 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="动画创作者、绘本作者、插画家蔡逍遥的个人作品网站。Portfolio of Cai Xiaoyao.">
+  <meta name="description" content="アニメーション作家・絵本作家・イラストレーター、蔡逍遥（サイ・ショウヨウ）のポートフォリオサイト。">
   <meta property="og:title" content="蔡逍遥 / CAI XIAOYAO">
-  <meta property="og:description" content="Animation · Picture Books · Illustration">
+  <meta property="og:description" content="アニメーション・絵本・イラストレーション">
   <meta property="og:image" content="https://www602248242-gif.github.io/portfolio/art/unseen/cover.webp">
   <meta property="og:type" content="website">
   <title>蔡逍遥 / CAI XIAOYAO</title>
   <link rel="icon" href="/portfolio/favicon.svg">
   <link rel="stylesheet" href="/portfolio/styles.css?v=20260911-hero">
   <script defer src="/portfolio/data/works.js?v=20260903-weisheng"></script>
-  <script defer src="/portfolio/script.js?v=20260911-hero"></script>
+  <script defer src="/portfolio/script.js?v=20261101-ja-default"></script>
 </head>
 <body data-page="home">
-  <a class="skip-link" href="#selected" data-i18n="skip">浏览作品</a>
+  <a class="skip-link" href="#selected" data-i18n="skip">作品を見る</a>
   <header class="site-header">
     <a class="wordmark" href="/portfolio/" aria-label="蔡逍遥">蔡逍遥</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
-    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+    <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
       <a href="#selected" data-i18n="navSelected">代表作品</a>
-      <a href="#works" data-i18n="navWorks">作品目录</a>
-      <a href="#about" data-i18n="navAbout">关于</a>
-      <a href="#contact" data-i18n="navContact">联系</a>
+      <a href="#works" data-i18n="navWorks">作品一覧</a>
+      <a href="#about" data-i18n="navAbout">プロフィール</a>
+      <a href="#contact" data-i18n="navContact">お問い合わせ</a>
     </nav>
-    <div class="language-switcher" aria-label="Language">
+    <div class="language-switcher" aria-label="言語">
       <button type="button" data-lang="zh">中文</button>
       <button type="button" data-lang="ja">日本語</button>
       <button type="button" data-lang="en">EN</button>
@@ -35,22 +35,22 @@
   <main>
     <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="eyebrow" data-i18n="heroEyebrow">动画 · 绘本 · 插画</p>
+        <p class="eyebrow" data-i18n="heroEyebrow">アニメーション・絵本・イラストレーション</p>
         <h1 data-i18n="name">蔡逍遥</h1>
-        <p class="roman-name" data-i18n="romanName">CAI XIAOYAO / サイ・ショウヨウ</p>
-        <p class="role" data-i18n="role">动画创作者 · 绘本作者 · 插画家 · 大学讲师</p>
-        <p class="hero-intro" data-i18n="intro">从手绘出发，在动画、绘本与图像叙事中，寻找感知、记忆和传统文化的新表达。</p>
-        <a class="arrow-link" href="#selected"><span data-i18n="explore">浏览作品</span> ↘</a>
+        <p class="roman-name" data-i18n="romanName">サイ・ショウヨウ / CAI XIAOYAO</p>
+        <p class="role" data-i18n="role">アニメーション作家・絵本作家・イラストレーター・大学講師</p>
+        <p class="hero-intro" data-i18n="intro">手描きを起点に、アニメーション、絵本、ビジュアル・ナラティブを通して、感覚、記憶、伝統文化の新たな表現を探究しています。</p>
+        <a class="arrow-link" href="#selected"><span data-i18n="explore">作品を見る</span> ↘</a>
       </div>
-      <div class="hero-book" id="hero-book" aria-roledescription="carousel" aria-label="Selected artwork book">
-        <div class="hero-book-stage" id="hero-book-stage" tabindex="0" aria-label="Artwork book. Use the left and right arrow keys to browse.">
+      <div class="hero-book" id="hero-book" aria-roledescription="carousel" aria-label="代表作品ブック">
+        <div class="hero-book-stage" id="hero-book-stage" tabindex="0" aria-label="作品ブック。左右の矢印キーで閲覧できます。">
           <article class="hero-page" id="hero-page" aria-live="polite" aria-atomic="true"></article>
           <div class="hero-page-turn" id="hero-page-turn" aria-hidden="true" hidden></div>
         </div>
-        <div class="hero-book-controls" aria-label="Artwork book navigation">
-          <button id="hero-prev" type="button" aria-label="Previous artwork" aria-controls="hero-page">←</button>
+        <div class="hero-book-controls" aria-label="作品ブックのナビゲーション">
+          <button id="hero-prev" type="button" aria-label="前の作品" aria-controls="hero-page">←</button>
           <span id="hero-counter" aria-live="polite">01 / 04</span>
-          <button id="hero-next" type="button" aria-label="Next artwork" aria-controls="hero-page">→</button>
+          <button id="hero-next" type="button" aria-label="次の作品" aria-controls="hero-page">→</button>
         </div>
       </div>
     </section>
@@ -66,8 +66,8 @@
     <section class="page-section works-section" id="works">
       <div class="section-heading">
         <p class="section-index">02 / WORKS</p>
-        <h2 data-i18n="worksTitle">作品目录</h2>
-        <p data-i18n="worksNote">动画、漫画、插画、绘本与视觉设计</p>
+        <h2 data-i18n="worksTitle">作品一覧</h2>
+        <p data-i18n="worksNote">アニメーション、マンガ、イラストレーション、絵本、ビジュアルデザイン</p>
       </div>
       <div class="works-catalog" id="works-catalog"></div>
     </section>
@@ -76,24 +76,24 @@
       <figure class="portrait"><img src="/portfolio/art/portrait.webp" alt="蔡逍遥" loading="lazy"></figure>
       <div class="about-copy">
         <p class="section-index">03 / ABOUT</p>
-        <h2 data-i18n="aboutTitle">关于我</h2>
-        <p class="bio" data-i18n="bio">蔡逍遥，动画创作者、绘本作者、插画家、大学讲师。毕业于中国美术学院硕士研究生课程，目前在中国高校从事动画与影像相关教学。创作领域包括手绘二维动画、绘本、漫画与插画，关注个人感知、日常经验、传统文化与视觉叙事之间的关系。</p>
+        <h2 data-i18n="aboutTitle">プロフィール</h2>
+        <p class="bio" data-i18n="bio">蔡逍遥（サイ・ショウヨウ）。アニメーション作家、絵本作家、イラストレーター、大学講師。中国美術学院大学院修士課程修了。現在、中国の大学でアニメーション・映像分野の教育に携わっている。手描き2Dアニメーション、絵本、マンガ、イラストレーションを中心に制作し、個人の感覚や日常経験、伝統文化とビジュアル・ナラティブの関係を探究している。</p>
         <dl>
-          <div><dt data-i18n="practice">创作领域</dt><dd data-i18n="practiceValue">手绘二维动画、绘本、漫画、插画</dd></div>
-          <div><dt data-i18n="education">教育经历</dt><dd data-i18n="educationValue">中国美术学院 · 硕士</dd></div>
+          <div><dt data-i18n="practice">制作分野</dt><dd data-i18n="practiceValue">手描き2Dアニメーション、絵本、マンガ、イラストレーション</dd></div>
+          <div><dt data-i18n="education">学歴</dt><dd data-i18n="educationValue">中国美術学院大学院 · 修士</dd></div>
         </dl>
       </div>
     </section>
 
     <section class="contact" id="contact">
       <p class="section-index">04 / CONTACT</p>
-      <h2 data-i18n="contactTitle">联系</h2>
-      <p data-i18n="contactText">有关作品放映、出版、展览、讲座及合作，请通过邮件联系。</p>
+      <h2 data-i18n="contactTitle">お問い合わせ</h2>
+      <p data-i18n="contactText">上映、出版、展覧会、講演、コラボレーションについては、メールでお問い合わせください。</p>
       <a class="email-link" href="mailto:saisyoyou@163.com">saisyoyou@163.com ↗</a>
       <a class="secondary-email" href="mailto:17816871197@163.com">17816871197@163.com</a>
     </section>
   </main>
 
-  <footer><p data-i18n="rights">© 2026 蔡逍遥. 保留所有权利。</p><a href="#top">↑ TOP</a></footer>
+  <footer><p data-i18n="rights">© 2026 蔡逍遥. All rights reserved.</p><a href="#top">↑ TOP</a></footer>
 </body>
 </html>

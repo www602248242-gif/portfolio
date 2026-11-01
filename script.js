@@ -2,6 +2,7 @@
   const BASE = window.PORTFOLIO_BASE || "/portfolio/";
   const works = window.WORKS || [];
   const languages = ["zh", "ja", "en"];
+  const LANGUAGE_STORAGE_KEY = "cai-xiaoyao-language-v2";
   const homeText = {
     zh: {
       skip: "浏览作品", navSelected: "代表作品", navWorks: "作品目录", navAbout: "关于", navContact: "联系",
@@ -68,7 +69,7 @@
   const summary = (work, lang) => work[`summary_${lang}`] || "";
   const asset = path => `${BASE}${path}`;
   const languageFromQuery = new URLSearchParams(location.search).get("lang");
-  let lang = languages.includes(languageFromQuery) ? languageFromQuery : localStorage.getItem("cai-xiaoyao-language");
+  let lang = languages.includes(languageFromQuery) ? languageFromQuery : localStorage.getItem(LANGUAGE_STORAGE_KEY);
   let heroIndex = 0;
   let heroAnimating = false;
   let heroTouchStartX = null;
@@ -76,8 +77,7 @@
   let suppressHeroClick = false;
   let heroFlipToken = 0;
   if (!languages.includes(lang)) {
-    const browser = navigator.language.toLowerCase();
-    lang = browser.startsWith("ja") ? "ja" : browser.startsWith("en") ? "en" : "zh";
+    lang = "ja";
   }
 
   function workHref(slug) {
@@ -87,7 +87,7 @@
   function setLanguage(next) {
     if (!languages.includes(next)) return;
     lang = next;
-    localStorage.setItem("cai-xiaoyao-language", lang);
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
     document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
